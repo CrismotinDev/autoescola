@@ -1,14 +1,18 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CadInstrutoresController;
 use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PainelRecepController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\ReceberController;
 use App\Http\Controllers\RecepController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VeiculoController;
+use App\Models\Aluno;
 
 Route::get('/', HomeController::class)->name('home');
 Route::post('painel', [UsuarioController::class, 'login'])->name('usuarios.login');
@@ -50,6 +54,23 @@ Route::delete('veiculos/{item}', [VeiculoController::class, 'delete'])->name('ve
 Route::get('veiculos/{item}/delete', [VeiculoController::class, 'modal'])->name('veiculos.modal');
 
 
+Route::get('alunos', [AlunoController::class, 'index'])->name('alunos.index');
+Route::post('alunos', [AlunoController::class, 'insert'])->name('alunos.insert');
+Route::get('alunos/inserir', [AlunoController::class, 'create'])->name('alunos.inserir');
+Route::get('alunos/{item}/edit', [AlunoController::class, 'edit'])->name('alunos.edit');
+Route::put('alunos/{item}', [AlunoController::class, 'editar'])->name('alunos.editar');
+Route::delete('alunos/{item}', [AlunoController::class, 'delete'])->name('alunos.delete');
+Route::get('alunos/{item}/delete', [AlunoController::class, 'modal'])->name('alunos.modal');
+Route::get('cobrar/{item}/modal-cobrar', [AlunoController::class, 'modal_cobrar'])->name('alunos.modal-cobrar');
+Route::post('alunos-cobrar', [AlunoController::class, 'cobrar'])->name('alunos.cobrar');
+
+Route::get('receber', [ReceberController::class, 'index'])->name('receber.index');
+Route::delete('receber/{item}', [ReceberController::class, 'delete'])->name('receber.delete');
+Route::get('receber/{item}/delete', [ReceberController::class, 'modal'])->name('receber.modal');
+Route::get('receber/{item}/modal-baixa', [ReceberController::class, 'modal_baixa'])->name('receber.modal-baixa');
+Route::put('receber-baixa', [ReceberController::class, 'baixa'])->name('receber.baixa');
+
+
 Route::get('usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 Route::delete('usuarios/{item}', [UsuarioController::class, 'delete'])->name('usuarios.delete');
 Route::get('usuarios/{item}/delete', [UsuarioController::class, 'modal'])->name('usuarios.modal');
@@ -58,6 +79,9 @@ Route::get('usuarios/{item}/delete', [UsuarioController::class, 'modal'])->name(
 Route::get('home-admin', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/', [UsuarioController::class, 'logout'])->name('usuarios.logout');
 Route::put('admin/{usuario}', [AdminController::class, 'editar'])->name('admin.editar');
+
+Route::get('home-recep', [PainelRecepController::class, 'index'])->name('painel-recep.index');
+Route::put('painel-recep/{usuario}', [PainelRecepController::class, 'editar'])->name('painel-recep.editar');
 
 
 

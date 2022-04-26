@@ -22,15 +22,11 @@
                             $tabela = categoria::all();
                        ?>
 
-                    <option value='{{$item->categoria}}'>{{$item->categoria}}</option>
+                    @foreach($tabela as $val)
 
-                       @foreach ($tabela as $val )
+                    <option value='{{$val->nome}}' <?php if($item->categoria == $val->nome){ ?> selected <?php } ?>>{{$val->nome}}</option>
 
-                       <?php if($item->categoria != $val->nome){ ?>
-
-                            <option value='{{$val->nome}}'>{{$val->nome}}</option>
-                        <?php }?>
-                       @endforeach
+                    @endforeach
 
                     </select>
 
@@ -51,15 +47,11 @@
                             use App\Models\instrutor;
                             $tabela = instrutor::all();
                        ?>
-
-                <option value='{{$item->instrutor}}'>{{$item->instrutor}}</option>
-
+                        <option value='0'>Selecionar Instrutor</option>
                        @foreach ($tabela as $val )
 
-                       <?php if($item->instrutor != $val->nome){ ?>
-
-                       <option value='{{$val->id}}'>{{$val->nome}}</option>
-                       <?php }?>
+                       <option value='{{$val->id}}' <?php if($item->instrutor == $val->id){ ?> selected <?php } ?>>{{$val->nome}}</option>
+                       <?php ?>
                        @endforeach
                         </select>
                     </div>

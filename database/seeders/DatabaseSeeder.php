@@ -1,7 +1,9 @@
 <?php
-
 namespace Database\Seeders;
 
+use App\Models\Impressora;
+use App\Models\Tipoforn;
+use App\Models\usuario;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+       /*  $this->call([
+
+            usuario::class,
+
+
+        ]); */
+
+
+
+
     }
 }
